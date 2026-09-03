@@ -14,6 +14,7 @@ Description:
 
 * When you click on the screen, a square block is placed but automatically snaps to the nearest grid intersection.
 * Uses Unity Gizmo to demonstrate the grid in a simplest way.
+* Double-check: Ensure there are no other objects at that location before allowing placement.
 
 
 
