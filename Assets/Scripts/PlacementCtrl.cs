@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlacementCtrl : MonoBehaviour
 {
     [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject prefabGhost;
+    [SerializeField] private GameObject objGhost;
     private static PlacementCtrl instance;
     public static PlacementCtrl Instance => instance;
 
@@ -12,6 +16,15 @@ public class PlacementCtrl : MonoBehaviour
     {
         if (instance == null) instance = this;
         else Debug.LogError("Only 1 PlacementCtrl allows to exist!");
+    }
+
+    private void Update()
+    {
+        Vector3 mouseScreenPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+        mouseScreenPos.z = 0f;
+        Vector3 spawnPos = new Vector3(Mathf.RoundToInt(mouseScreenPos.x), Mathf.RoundToInt(mouseScreenPos.y), Mathf.RoundToInt(mouseScreenPos.z));
+        if (objGhost == null) objGhost = Instantiate(prefabGhost, spawnPos, Quaternion.identity);
+        else objGhost.transform.position = spawnPos;
     }
 
     public void Spawn(Vector3 position)

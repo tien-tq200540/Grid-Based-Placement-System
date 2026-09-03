@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 5786488231376202582, guid: 1bfb57e65a4161c439614f9b05491e87, type: 3}
+  prefabGhost: {fileID: 5786488231376202582, guid: 5dcb69a2fd2814d478820f92cb1da211, type: 3}
 --- !u!114 &899012419
 MonoBehaviour:
   m_ObjectHideFlags: 0
