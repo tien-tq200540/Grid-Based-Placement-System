@@ -17,6 +17,18 @@ public class PlacementCtrl : MonoBehaviour
     public void Spawn(Vector3 position)
     {
         Vector3 spawnPos = new Vector3(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.y), Mathf.RoundToInt(position.z));
+
+        // Create a virtual 0.9x0.9 box at that position to check for overlaps
+        // (Using 0.9 instead of 1.0 to avoid accidentally hitting adjacent cells)
+        Collider2D hit = Physics2D.OverlapBox(spawnPos, new Vector2(0.9f, 0.9f), 0f);
+
+        // If something is hit (hit is not null) -> An object already exists -> Skip placement
+        if (hit != null)
+        {
+            Debug.Log("There's already a structure in this cell!");
+            return;
+        }
+
         Instantiate(prefab, spawnPos, Quaternion.identity);
     }
 
